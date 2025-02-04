@@ -11,7 +11,7 @@ export default function WebDevStreamer() {
             href="http://creativeoak.dk"
             class="ml-3 text-white font-medium underline hover:text-blue-100 inline-flex items-center"
             target="_blank"
-            rel="noopener noreferrer"
+            rel="noopener"
           >
             Besøg creativeoak.dk
             <svg
