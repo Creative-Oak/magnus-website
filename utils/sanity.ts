@@ -3,13 +3,9 @@ import { createClient } from "https://esm.sh/@sanity/client@6.27.2";
 import imageUrlBuilder from "https://esm.sh/@sanity/image-url@1.1.0";
 import type { SanityImageSource } from "https://esm.sh/@sanity/image-url@1.1.0/lib/types/types";
 
-if (!Deno.env.get("SANITY_PROJECT_ID")) {
-  throw new Error("Missing SANITY_PROJECT_ID in environment");
-}
-
 export const client = createClient({
-  projectId: Deno.env.get("SANITY_PROJECT_ID"),
-  dataset: Deno.env.get("SANITY_DATASET") || "production",
+  projectId: "9jot1969",
+  dataset: "production",
   apiVersion: "2024-02-04",
   useCdn: true,
 });
