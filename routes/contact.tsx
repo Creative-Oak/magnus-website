@@ -211,10 +211,10 @@ export default function ContactPage(props: PageProps) {
                 ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                     <h3 className="text-lg font-medium text-green-800 mb-2">
-                      Thank you for your message!
+                      Tak for din besked!
                     </h3>
                     <p className="text-green-700">
-                      I'll get back to you as soon as possible.
+                      Jeg vender tilbage snarest muligt!
                     </p>
                   </div>
                 )
@@ -222,11 +222,10 @@ export default function ContactPage(props: PageProps) {
                 ? (
                   <div className="bg-red-50 border border-red-200 rounded-lg p-6">
                     <h3 className="text-lg font-medium text-red-800 mb-2">
-                      An error occurred
+                      Upsi, der er sket en fejl!
                     </h3>
                     <p className="text-red-700">
-                      Sorry, there was an error sending your message. Please try
-                      again later or contact me directly via email.
+                      Prøv igen lidt senere. Jeg arbejder på sagen...
                     </p>
                   </div>
                 )
@@ -240,7 +239,7 @@ export default function ContactPage(props: PageProps) {
                         htmlFor="name"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Name
+                        Navn
                       </label>
                       <input
                         type="text"
@@ -272,7 +271,7 @@ export default function ContactPage(props: PageProps) {
                         htmlFor="subject"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Subject
+                        Emne
                       </label>
                       <input
                         type="text"
@@ -289,7 +288,7 @@ export default function ContactPage(props: PageProps) {
                         htmlFor="message"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Message
+                        Besked
                       </label>
                       <textarea
                         name="message"
@@ -306,7 +305,7 @@ export default function ContactPage(props: PageProps) {
                         type="submit"
                         className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                       >
-                        Send Message
+                        Send besked
                       </button>
                     </div>
                   </form>
