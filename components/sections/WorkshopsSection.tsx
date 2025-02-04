@@ -29,8 +29,17 @@ function WorkshopCard({
     maximumFractionDigits: 0,
   }).format(price);
 
+  // Create URL parameters without relying on browser APIs
+  const params = new URLSearchParams({
+    subject: `Workshop Booking: ${title} (${duration})`,
+    message:
+      `Jeg er interesseret i workshoppen "${title}".\n\nDetaljer:\n- Varighed: ${duration}\n- Antal deltagere: ${participants}\n- Niveau: ${level}\n\nJeg vil gerne høre mere om mulige datoer og det praktiske omkring afholdelse af workshoppen.`,
+  });
+
+  const contactUrl = `/contact?${params.toString()}`;
+
   return (
-    <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
+    <div class="flex flex-col h-full bg-white p-8 rounded-lg shadow-lg border border-gray-200">
       <h3 class="text-xl font-bold text-gray-900 mb-4">{title}</h3>
       <p class="text-gray-600 mb-6">{description}</p>
 
@@ -70,7 +79,7 @@ function WorkshopCard({
         </ul>
       </div>
 
-      <div>
+      <div class="mb-6">
         <h4 class="font-semibold text-gray-900 mb-2">
           Værktøjer & Materialer:
         </h4>
@@ -82,6 +91,15 @@ function WorkshopCard({
             </li>
           ))}
         </ul>
+      </div>
+
+      <div class="mt-auto pt-6">
+        <a
+          href={contactUrl}
+          class="inline-flex items-center justify-center w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
+        >
+          Book nu
+        </a>
       </div>
     </div>
   );

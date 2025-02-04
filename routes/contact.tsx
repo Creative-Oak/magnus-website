@@ -1,47 +1,66 @@
 // routes/contact.tsx
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { Layout } from "../components/Layout.tsx";
-import {
-  IconChat,
-  IconEmail,
-  IconGithub,
-  IconLinkedIn,
-  IconLocation,
-} from "../components/Icons.tsx";
+import { sendContactEmail } from "../utils/sendgrid.ts";
 
 export const handler: Handlers = {
   async POST(req, ctx) {
-    const form = await req.formData();
-    const name = form.get("name");
-    const email = form.get("email");
-    const message = form.get("message");
-    const subject = form.get("subject");
+    try {
+      const form = await req.formData();
+      const name = form.get("name")?.toString();
+      const email = form.get("email")?.toString();
+      const subject = form.get("subject")?.toString();
+      const message = form.get("message")?.toString();
 
-    // TODO: Implement your email sending logic here
-    // For example, using EmailJS, SendGrid, or another email service
+      if (!name || !email || !subject || !message) {
+        return new Response("Missing required fields", { status: 400 });
+      }
 
-    // Redirect back to contact page with success message
-    const headers = new Headers();
-    headers.set("location", "/contact?sent=true");
-    return new Response(null, {
-      status: 303,
-      headers,
-    });
+      await sendContactEmail({
+        name,
+        email,
+        subject,
+        message,
+      });
+
+      // Redirect back to contact page with success message
+      const headers = new Headers();
+      headers.set("location", "/contact?sent=true");
+      return new Response(null, {
+        status: 303,
+        headers,
+      });
+    } catch (error) {
+      console.error("Failed to send email:", error);
+
+      // Redirect back with error message
+      const headers = new Headers();
+      headers.set("location", "/contact?error=true");
+      return new Response(null, {
+        status: 303,
+        headers,
+      });
+    }
   },
 };
 
 export default function ContactPage(props: PageProps) {
   const sent = props.url.searchParams.get("sent") === "true";
+  const error = props.url.searchParams.get("error") === "true";
+
+  // Get pre-filled values from URL parameters
+  const prefillSubject = props.url.searchParams.get("subject") ?? "";
+  const prefillMessage = props.url.searchParams.get("message") ?? "";
 
   return (
-    <Layout title="Kontakt">
+    <Layout title="Contact">
       {/* Hero Section */}
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl font-bold mb-4">Kontakt</h1>
             <p className="text-xl text-gray-600">
-              Lad os tale om hvordan jeg kan hjælpe din organisation
+              Lad os vende, hvordan jeg kan hjælpe din organisation!
             </p>
           </div>
         </div>
@@ -53,12 +72,12 @@ export default function ContactPage(props: PageProps) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             {/* Contact Information */}
             <div>
-              <h2 className="text-2xl font-bold mb-6">Lad os snakke</h2>
+              <h2 className="text-2xl font-bold mb-6">Lad os tage en snak!</h2>
               <div className="prose prose-lg">
                 <p>
-                  Jeg er altid interesseret i at høre om nye projekter og
-                  muligheder for samarbejde. Send mig en besked, og jeg vender
-                  tilbage hurtigst muligt.
+                  Jeg er altid intereseret i at høre om nye projekter og
+                  muligheder for samarbejde. Send mig en besked, så vender jeg
+                  tilbage snarest muligt!
                 </p>
               </div>
 
@@ -86,10 +105,10 @@ export default function ContactPage(props: PageProps) {
                     <h3 className="text-lg font-medium">Email</h3>
                     <p className="mt-1">
                       <a
-                        href="mailto:magnus@example.com"
+                        href="mailto:magnus@creativeoak.dk"
                         className="text-blue-600 hover:text-blue-800"
                       >
-                        magnus@example.com
+                        magnus@creativeoak.dk
                       </a>
                     </p>
                   </div>
@@ -121,9 +140,9 @@ export default function ContactPage(props: PageProps) {
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-lg font-medium">Lokation</h3>
+                    <h3 className="text-lg font-medium">Adresse</h3>
                     <p className="mt-1 text-gray-600">
-                      Aarhus, Danmark
+                      Langelandsgade 62, st. 8000, Aarhus Denmark
                     </p>
                   </div>
                 </div>
@@ -151,7 +170,7 @@ export default function ContactPage(props: PageProps) {
                     <h3 className="text-lg font-medium">Sociale Medier</h3>
                     <div className="mt-1 flex space-x-4">
                       <a
-                        href="https://linkedin.com/in/your-profile"
+                        href="https://www.linkedin.com/in/magnushoholt/"
                         className="text-gray-600 hover:text-blue-600"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -166,7 +185,7 @@ export default function ContactPage(props: PageProps) {
                         </svg>
                       </a>
                       <a
-                        href="https://github.com/your-username"
+                        href="https://github.com/magniswerfer"
                         className="text-gray-600 hover:text-gray-900"
                         target="_blank"
                         rel="noopener noreferrer"
@@ -192,28 +211,43 @@ export default function ContactPage(props: PageProps) {
                 ? (
                   <div className="bg-green-50 border border-green-200 rounded-lg p-6">
                     <h3 className="text-lg font-medium text-green-800 mb-2">
-                      Tak for din besked!
+                      Thank you for your message!
                     </h3>
                     <p className="text-green-700">
-                      Jeg vender tilbage til dig hurtigst muligt.
+                      I'll get back to you as soon as possible.
+                    </p>
+                  </div>
+                )
+                : error
+                ? (
+                  <div className="bg-red-50 border border-red-200 rounded-lg p-6">
+                    <h3 className="text-lg font-medium text-red-800 mb-2">
+                      An error occurred
+                    </h3>
+                    <p className="text-red-700">
+                      Sorry, there was an error sending your message. Please try
+                      again later or contact me directly via email.
                     </p>
                   </div>
                 )
                 : (
-                  <form method="POST" className="space-y-6">
+                  <form
+                    method="POST"
+                    className="space-y-6 bg-gray-50 p-6 rounded-lg"
+                  >
                     <div>
                       <label
                         htmlFor="name"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Navn
+                        Name
                       </label>
                       <input
                         type="text"
                         name="name"
                         id="name"
                         required
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
                       />
                     </div>
 
@@ -229,7 +263,7 @@ export default function ContactPage(props: PageProps) {
                         name="email"
                         id="email"
                         required
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
                       />
                     </div>
 
@@ -238,14 +272,15 @@ export default function ContactPage(props: PageProps) {
                         htmlFor="subject"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Emne
+                        Subject
                       </label>
                       <input
                         type="text"
                         name="subject"
                         id="subject"
                         required
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        value={prefillSubject}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
                       />
                     </div>
 
@@ -254,14 +289,15 @@ export default function ContactPage(props: PageProps) {
                         htmlFor="message"
                         className="block text-sm font-medium text-gray-700"
                       >
-                        Besked
+                        Message
                       </label>
                       <textarea
                         name="message"
                         id="message"
                         rows={6}
                         required
-                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
+                        defaultValue={prefillMessage}
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500 bg-white"
                       />
                     </div>
 
@@ -270,7 +306,7 @@ export default function ContactPage(props: PageProps) {
                         type="submit"
                         className="w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                       >
-                        Send Besked
+                        Send Message
                       </button>
                     </div>
                   </form>
