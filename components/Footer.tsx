@@ -40,14 +40,14 @@ export function Footer() {
 
         <div class="mt-8 flex justify-center space-x-8">
           <a
-            href="https://www.linkedin.com/in/your-profile"
+            href="https://www.linkedin.com/in/magnushoholt/"
             class="text-gray-500 hover:text-blue-600 transition-colors duration-200"
           >
             <span class="sr-only">LinkedIn Profile</span>
             <IconLinkedIn class="h-6 w-6" />
           </a>
           <a
-            href="https://github.com/your-username"
+            href="https://github.com/magniswerfer"
             class="text-gray-500 hover:text-gray-900 transition-colors duration-200"
           >
             <span class="sr-only">GitHub Profile</span>
