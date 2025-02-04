@@ -4,22 +4,34 @@
 
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
+import * as $about from "./routes/about.tsx";
+import * as $blog_slug_ from "./routes/blog/[slug].tsx";
+import * as $blog_index from "./routes/blog/index.tsx";
+import * as $contact from "./routes/contact.tsx";
 import * as $index from "./routes/index.tsx";
 import * as $services from "./routes/services.tsx";
 import * as $CollaboratorsScroll from "./islands/CollaboratorsScroll.tsx";
 import * as $NavigationMenu from "./islands/NavigationMenu.tsx";
+import * as $WebDevBanner from "./islands/WebDevBanner.tsx";
+import * as $WebDevStreamer from "./islands/WebDevStreamer.tsx";
 import type { Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
+    "./routes/about.tsx": $about,
+    "./routes/blog/[slug].tsx": $blog_slug_,
+    "./routes/blog/index.tsx": $blog_index,
+    "./routes/contact.tsx": $contact,
     "./routes/index.tsx": $index,
     "./routes/services.tsx": $services,
   },
   islands: {
     "./islands/CollaboratorsScroll.tsx": $CollaboratorsScroll,
     "./islands/NavigationMenu.tsx": $NavigationMenu,
+    "./islands/WebDevBanner.tsx": $WebDevBanner,
+    "./islands/WebDevStreamer.tsx": $WebDevStreamer,
   },
   baseUrl: import.meta.url,
 } satisfies Manifest;

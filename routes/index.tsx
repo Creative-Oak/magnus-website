@@ -4,7 +4,7 @@ import { FeaturesSection } from "../components/sections/FeaturesSection.tsx";
 import { CTASection } from "../components/sections/CTASection.tsx";
 import CollaboratorsScroll from "../islands/CollaboratorsScroll.tsx";
 import { MainServices } from "../components/sections/MainServices.tsx";
-MainServices;
+import WebDevStreamer from "../components/sections/WebDevSection.tsx";
 
 export default function HomePage() {
   return (
@@ -13,9 +13,12 @@ export default function HomePage() {
       <FeaturesSection />
       <CollaboratorsScroll />
       <CTASection />
-      <div class="bg-gray-50 py-16">
-        <MainServices />
+      <div class="bg-gray-50">
+        <div class=" py-16 max-w-7xl mx-auto px-4 sm:px-6">
+          <MainServices />
+        </div>
       </div>
+      <WebDevStreamer />
     </Layout>
   );
 }
