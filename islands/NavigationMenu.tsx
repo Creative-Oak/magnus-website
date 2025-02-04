@@ -1,8 +1,23 @@
-import { h } from "preact";
 import { useState } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export function NavigationMenu() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const currentPath = IS_BROWSER ? globalThis.location.pathname : "/";
+
+  const navItems = [
+    { href: "/", label: "Hjem" },
+    { href: "/services", label: "Services" },
+    { href: "/blog", label: "Blog" },
+    { href: "/about", label: "Om Magnus" },
+    { href: "/contact", label: "Kontakt" },
+  ];
+
+  const isCurrentPath = (path: string) => {
+    if (path === "/" && currentPath === "/") return true;
+    if (path !== "/" && currentPath.startsWith(path)) return true;
+    return false;
+  };
 
   return (
     <div class="relative">
@@ -19,36 +34,19 @@ export function NavigationMenu() {
 
             {/* Desktop menu */}
             <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <a
-                href="/"
-                class="border-blue-500 text-gray-900 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Hjem
-              </a>
-              <a
-                href="/services"
-                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Services
-              </a>
-              <a
-                href="/blog"
-                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Blog
-              </a>
-              <a
-                href="/about"
-                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Om Magnus
-              </a>
-              <a
-                href="/contact"
-                class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium"
-              >
-                Kontakt
-              </a>
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  class={`${
+                    isCurrentPath(item.href)
+                      ? "border-blue-500 text-gray-900"
+                      : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                  } inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium`}
+                >
+                  {item.label}
+                </a>
+              ))}
             </div>
 
             {/* Mobile menu button */}
@@ -100,33 +98,22 @@ export function NavigationMenu() {
           class={`${
             isMenuOpen ? "block" : "hidden"
           } sm:hidden absolute w-full bg-white shadow-lg z-50`}
-          style="top: 64px;" // Positioned right below the header
+          style="top: 64px;"
         >
           <div class="pt-2 pb-3 space-y-1">
-            <a
-              href="/services"
-              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            >
-              Services
-            </a>
-            <a
-              href="/blog"
-              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            >
-              Blog
-            </a>
-            <a
-              href="/about"
-              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            >
-              Om Magnus
-            </a>
-            <a
-              href="/contact"
-              class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium"
-            >
-              Kontakt
-            </a>
+            {navItems.slice(1).map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                class={`${
+                  isCurrentPath(item.href)
+                    ? "border-blue-500 text-gray-900 bg-blue-50"
+                    : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
+                } block pl-3 pr-4 py-2 border-l-4 text-base font-medium`}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
         </div>
       </nav>

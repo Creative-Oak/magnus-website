@@ -28,16 +28,16 @@ export const HeroSection: ComponentType = () => {
           <div className="w-full px-4 sm:px-6 lg:px-8 pb-16 lg:pb-20">
             <div className="max-w-4xl ml-auto lg:ml-0 text-left">
               <h1 className="text-4xl font-bold text-white sm:text-5xl md:text-6xl lg:text-7xl">
-                <span className="block">Empowering Teams</span>
+                <span className="block">Styrker Teams</span>
                 <span className="block mt-2 text-blue-400">
-                  Through AI Education & Leadership
+                  Gennem AI-Uddannelse & Lederskab
                 </span>
               </h1>
 
               <p className="mt-6 text-xl text-gray-200 max-w-2xl ml-auto lg:ml-0">
-                Expert public speaker and AI workshop facilitator helping
-                organizations navigate the future of technology through engaging
-                presentations and hands-on workshops.
+                Professionel foredragsholder og AI-workshop facilitator, der
+                hjælper organisationer med at navigere i teknologiens fremtid
+                gennem engagerende præsentationer og praktiske workshops.
               </p>
 
               <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-end lg:justify-start">
@@ -45,13 +45,13 @@ export const HeroSection: ComponentType = () => {
                   href="/contact"
                   className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-200 shadow-lg hover:shadow-xl"
                 >
-                  Book a Session
+                  Book en Session
                 </a>
                 <a
                   href="/services"
                   className="inline-flex items-center justify-center px-8 py-3 border-2 border-white text-base font-medium rounded-md text-white hover:bg-white hover:text-blue-900 transition-colors duration-200"
                 >
-                  Learn More
+                  Læs Mere
                 </a>
               </div>
             </div>
