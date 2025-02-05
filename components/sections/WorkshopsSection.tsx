@@ -110,7 +110,7 @@ export function WorkshopsSection() {
     {
       title: "Gør-det-selv Machine Learning Workshop",
       description:
-        "En praktisk hands-on workshop hvor deltagerne lærer om machine learning gennem interaktive eksperimenter med BBC micro:bit og ml-machine.org platformen.",
+        "En praktisk hands-on workshop hvor deltagerne lærer om machine learning (ML) gennem interaktive eksperimenter med BBC micro:bit og ml-machine.org platformen.",
       duration: "3 timer",
       participants: "6-25 deltagere",
       level: "Niveau: Begynder",
@@ -119,37 +119,33 @@ export function WorkshopsSection() {
         "Forstå grundlæggende ML-koncepter gennem praktisk erfaring",
         "Bygge og træne simple ML-modeller til bevægelsesregistrering",
         "Lære om dataindsamling og -repræsentation i ML-systemer",
-        "Få hands-on erfaring med neurale netværk og k-nærmeste naboer",
+        "Få hands-on erfaring med forskellige typer af ML",
         "Udvikle forståelse for ML-pipeline fra data til færdig model",
       ],
       tools: [
         "BBC micro:bit med accelerometer",
         "ml-machine.org platform",
-        "Dataindsamlingsværktøjer",
-        "Visualiseringsværktøjer",
-        "Træningsplatform til neurale netværk",
       ],
     },
     {
       title: "Design af ML-Løsninger i Virksomheden",
       description:
-        "En struktureret workshop hvor teams identificerer og designer ML-løsninger til deres specifikke forretningsudfordringer gennem en guidet proces med fokus på værdi og implementerbarhed.",
+        "En struktureret workshop hvor teams identificerer og designer AI-løsninger til deres specifikke forretningsudfordringer gennem en guidet proces med fokus på værdi og implementerbarhed.",
       duration: "5 timer",
       participants: "8-20 deltagere",
       level: "Niveau: Mellem",
       price: 16000,
       learningOutcomes: [
-        "Identificere områder i virksomheden hvor ML kan skabe værdi",
+        "Identificere områder i virksomheden hvor AI kan skabe værdi",
         "Analysere datakvalitet og -tilgængelighed for ML-projekter",
-        "Designe ML-løsninger med fokus på forretningsmæssig værdi",
+        "Designe AI-løsninger med fokus på forretningsmæssig værdi",
         "Vurdere implementeringsmuligheder og -udfordringer",
-        "Udvikle konkrete projektforslag til ML-implementering",
+        "Udvikle konkrete projektforslag til AI-implementering",
       ],
       tools: [
         "Design Thinking værktøjer",
         "ML Solution Canvas",
         "Data kortlægningsværktøjer",
-        "Implementeringsplanlægningsværktøjer",
       ],
     },
   ];
