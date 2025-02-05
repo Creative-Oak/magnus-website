@@ -114,7 +114,7 @@ export function WorkshopsSection() {
       duration: "3 timer",
       participants: "6-25 deltagere",
       level: "Niveau: Begynder",
-      price: 8000,
+      price: 12000,
       learningOutcomes: [
         "Forstå grundlæggende ML-koncepter gennem praktisk erfaring",
         "Bygge og træne simple ML-modeller til bevægelsesregistrering",
@@ -137,7 +137,7 @@ export function WorkshopsSection() {
       duration: "5 timer",
       participants: "8-20 deltagere",
       level: "Niveau: Mellem",
-      price: 10000,
+      price: 16000,
       learningOutcomes: [
         "Identificere områder i virksomheden hvor ML kan skabe værdi",
         "Analysere datakvalitet og -tilgængelighed for ML-projekter",
