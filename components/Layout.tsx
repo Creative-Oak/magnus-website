@@ -32,6 +32,18 @@ export function Layout({ children, title }: LayoutProps) {
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
 
+        {/* Twitter Card Tags */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content={imageUrl} />
+        <meta
+          name="twitter:title"
+          content="Magnus H. Kaspersen. AI-workshops, -foredrag og -konsulentbistand"
+        />
+        <meta
+          name="twitter:description"
+          content="Professionel foredragsholder og AI-workshop facilitator, der hjælper organisationer med at navigere i teknologiens fremtid gennem engagerende præsentationer og praktiske workshops."
+        />
+
         {/* LinkedIn Specific */}
         <meta name="image" property="og:image" content={imageUrl} />
         <meta name="author" content="Magnus H. Kaspersen" />
