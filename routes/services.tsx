@@ -49,7 +49,7 @@ export const handler: Handlers = {
 export default function ServicesPage(props: PageProps) {
   return (
     <Layout title="Services">
-      <div class="lg:text-center mt-16 mb-16">
+      <div class="lg:text-center mt-16 mb-16 px-4">
         <h1 class="text-base text-blue-600 font-semibold tracking-wide uppercase">
           Services
         </h1>
