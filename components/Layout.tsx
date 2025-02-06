@@ -8,15 +8,14 @@ interface LayoutProps {
   title: string;
 }
 
-const baseUrl = Deno.env.get("ENVIRONMENT") === "production"
-  ? "https://magnushkaspersen.com"
-  : "http://localhost:8000";
-
 export function Layout({ children, title }: LayoutProps) {
   return (
     <>
       <Head>
-        <meta property="og:image" content={`${baseUrl}/images/og-image.jpg`} />
+        <meta
+          property="og:image"
+          content={`https://magnushkaspersen.com/images/og-image.jpg`}
+        />
         <meta
           property="og:title"
           content="Magnus H. Kaspersen. AI-workshops, -foredrag og -konsulentbistand"
