@@ -3,6 +3,7 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 import { Layout } from "../components/Layout.tsx";
 import { CTASection } from "../components/sections/CTASection.tsx";
 import { MainServices } from "../components/sections/MainServices.tsx";
+import { TalksSection } from "../components/sections/TalksSection.tsx";
 import { WorkshopsSection } from "../components/sections/WorkshopsSection.tsx";
 
 interface ServiceCardProps {
@@ -48,10 +49,23 @@ export const handler: Handlers = {
 export default function ServicesPage(props: PageProps) {
   return (
     <Layout title="Services">
-      {/* Main Services Section */}
-      <section className="py-12 bg-white">
+      <div class="lg:text-center mt-16 mb-16">
+        <h1 class="text-base text-blue-600 font-semibold tracking-wide uppercase">
+          Services
+        </h1>
+        <p class="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
+          Styrk din organisation gennem AI
+        </p>
+        <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+          Få ekspertvejledning i at udnytte AI's potentiale gennem skræddersyede
+          workshops, inspirerende foredrag og praktiske hands-on forløb.
+        </p>
+      </div>
+
+      {/* Workshops Section */}
+      <section className="py-12 bg-white-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <MainServices />
+          <TalksSection />
         </div>
       </section>
 
@@ -59,6 +73,13 @@ export default function ServicesPage(props: PageProps) {
       <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <WorkshopsSection />
+        </div>
+      </section>
+
+      {/* Main Services Section */}
+      <section className="py-12 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <MainServices />
         </div>
       </section>
 

@@ -1,25 +1,19 @@
 // components/sections/MainServices.tsx
-import { h } from "preact";
+import { ComponentChildren, h } from "preact";
+import { IconConsulting, IconPresentation, IconWorkshop } from "../Icons.tsx";
 
 interface ServiceCardProps {
   title: string;
   description: string;
   features: string[];
-  icon: string;
+  icon: ComponentChildren;
 }
 
 function ServiceCard({ title, description, features, icon }: ServiceCardProps) {
   return (
     <div class="bg-white p-8 rounded-lg shadow-lg border border-gray-200">
       <div class="flex items-center justify-center h-12 w-12 rounded-md bg-blue-500 text-white mb-6">
-        <svg
-          class="h-6 w-6"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-          dangerouslySetInnerHTML={{ __html: icon }}
-        />
+        {icon}
       </div>
       <h3 class="text-xl font-bold text-gray-900 mb-4">{title}</h3>
       <p class="text-gray-600 mb-6">{description}</p>
@@ -41,8 +35,7 @@ export function MainServices() {
       title: "AI-Workshops",
       description:
         "Praktiske workshops der afmystificerer AI og giver teams konkrete værktøjer til effektiv implementering af AI i deres daglige arbejde.",
-      icon:
-        '<path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5C8.24 12.26 8.71 13.02 8.91 14"></path><line x1="9" y1="18" x2="15" y2="18"></line><line x1="10" y1="22" x2="14" y2="22"></line>',
+      icon: <IconWorkshop class="h-6 w-6" />,
       features: [
         "Hands-on træning i moderne AI-værktøjer",
         "Skræddersyede øvelser til din organisations behov",
@@ -55,8 +48,7 @@ export function MainServices() {
       title: "Foredrag om Digital Transformation",
       description:
         "Inspirerende keynotes og præsentationer om AI-trends, digital transformation og fremtidssikret lederskab.",
-      icon:
-        '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path>',
+      icon: <IconPresentation class="h-6 w-6" />,
       features: [
         "Dybdegående indsigt i AI-teknologiens muligheder",
         "Konkrete eksempler på succesfuld digital transformation",
@@ -65,22 +57,49 @@ export function MainServices() {
         "Tilpasset dit publikum og branche",
       ],
     },
+    {
+      title: "AI Consulting",
+      description:
+        "Strategisk rådgivning om AI-implementation og digital transformation, skræddersyet til din virksomheds unikke behov og udfordringer.",
+      icon: <IconConsulting class="h-6 w-6" />,
+      features: [
+        "AI-modenhedsvurdering og strategiudvikling",
+        "Identificering af AI-muligheder i din forretning",
+        "Assistance med valg af AI-værktøjer og platforme",
+        "Vejledning om datastrategier og governance",
+        "Support ved implementering og change management",
+      ],
+    },
   ];
 
   return (
-    <div class="lg:text-center mb-16">
-      <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">
-        Services
-      </h2>
-      <p class="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
-        Styrk din organisation gennem AI
-      </p>
-      <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
-        Få ekspert vejledning i at udnytte AI's potentiale gennem skræddersyede
-        workshops, inspirerende foredrag og praktiske hands-on forløb.
-      </p>
-      <div class="mt-16 grid md:grid-cols-2 gap-8">
+    <div>
+      <div class="lg:text-center mb-16">
+        <h2 class="text-base text-blue-600 font-semibold tracking-wide uppercase">
+          Specielle Forløb
+        </h2>
+        <p class="mt-2 text-3xl leading-8 font-bold tracking-tight text-gray-900 sm:text-4xl">
+          Har du brug for noget skræddersyet til din virksomhed?
+        </p>
+        <p class="mt-4 max-w-2xl text-xl text-gray-600 lg:mx-auto">
+          Jeg har mange års erfaring i at holde foredrag og facilitere
+          workshops. Hvis du mangler noget, du ikke kan finde i mit katalog, kan
+          du altid række ud til mig, så vi sammen kan skabe præcis det du har
+          brug for.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
         {services.map((service) => <ServiceCard {...service} />)}
+      </div>
+
+      <div class="text-center">
+        <a
+          href="/contact"
+          class="inline-flex items-center justify-center px-8 py-4 border border-transparent text-base font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700 md:text-lg md:px-10 transition-colors"
+        >
+          Lad os skabe det perfekte forløb sammen
+        </a>
       </div>
     </div>
   );
