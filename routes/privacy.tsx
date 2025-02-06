@@ -1,11 +1,4 @@
 import { Layout } from "../components/Layout.tsx";
-import { HeroSection } from "../components/sections/HeroSection.tsx";
-import { FeaturesSection } from "../components/sections/FeaturesSection.tsx";
-import { CTASection } from "../components/sections/CTASection.tsx";
-import CollaboratorsScroll from "../islands/CollaboratorsScroll.tsx";
-import { MainServices } from "../components/sections/MainServices.tsx";
-import WebDevStreamer from "../components/sections/WebDevSection.tsx";
-import { Testimonials } from "../components/sections/TestemonialSection.tsx";
 
 export default function HomePage() {
   return (
