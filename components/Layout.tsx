@@ -15,7 +15,7 @@ export function Layout({ children, title }: LayoutProps) {
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>Magnus H. Kaspersen | {title}</title>
 
         {/* Essential OpenGraph Tags */}
         <meta property="og:site_name" content="Magnus H. Kaspersen" />
