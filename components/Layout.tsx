@@ -16,7 +16,7 @@ export function Layout({ children, title }: LayoutProps) {
   return (
     <>
       <Head>
-        <meta property="og:image" content={`${baseUrl}/images/og-image.webp`} />
+        <meta property="og:image" content={`${baseUrl}/images/og-image.jpg`} />
         <meta
           property="og:title"
           content="Magnus H. Kaspersen. AI-workshops, -foredrag og -konsulentbistand"
