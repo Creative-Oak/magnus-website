@@ -18,6 +18,8 @@ export function Layout({ children, title }: LayoutProps) {
         <title>{title}</title>
 
         {/* Essential OpenGraph Tags */}
+        <meta property="og:site_name" content="Magnus H. Kaspersen" />
+
         <meta property="og:type" content="website" />
         <meta property="og:url" content={websiteUrl} />
         <meta
