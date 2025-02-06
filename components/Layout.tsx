@@ -9,19 +9,36 @@ interface LayoutProps {
 }
 
 export function Layout({ children, title }: LayoutProps) {
+  const websiteUrl = "https://magnushkaspersen.com";
+  const imageUrl = `${websiteUrl}/images/og-image.jpg`;
+
   return (
     <>
       <Head>
-        <meta
-          property="og:image"
-          content={`https://magnushkaspersen.com/images/og-image.jpg`}
-        />
+        <title>{title}</title>
+
+        {/* Essential OpenGraph Tags */}
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={websiteUrl} />
         <meta
           property="og:title"
           content="Magnus H. Kaspersen. AI-workshops, -foredrag og -konsulentbistand"
         />
         <meta
           property="og:description"
+          content="Professionel foredragsholder og AI-workshop facilitator, der hjælper organisationer med at navigere i teknologiens fremtid gennem engagerende præsentationer og praktiske workshops."
+        />
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* LinkedIn Specific */}
+        <meta name="image" property="og:image" content={imageUrl} />
+        <meta name="author" content="Magnus H. Kaspersen" />
+
+        {/* Regular Meta Tags */}
+        <meta
+          name="description"
           content="Professionel foredragsholder og AI-workshop facilitator, der hjælper organisationer med at navigere i teknologiens fremtid gennem engagerende præsentationer og praktiske workshops."
         />
       </Head>
