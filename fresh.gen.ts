@@ -9,6 +9,7 @@ import * as $blog_slug_ from "./routes/blog/[slug].tsx";
 import * as $blog_index from "./routes/blog/index.tsx";
 import * as $contact from "./routes/contact.tsx";
 import * as $index from "./routes/index.tsx";
+import * as $privacy from "./routes/privacy.tsx";
 import * as $services from "./routes/services.tsx";
 import * as $CollaboratorsScroll from "./islands/CollaboratorsScroll.tsx";
 import * as $NavigationMenu from "./islands/NavigationMenu.tsx";
@@ -25,6 +26,7 @@ const manifest = {
     "./routes/blog/index.tsx": $blog_index,
     "./routes/contact.tsx": $contact,
     "./routes/index.tsx": $index,
+    "./routes/privacy.tsx": $privacy,
     "./routes/services.tsx": $services,
   },
   islands: {
