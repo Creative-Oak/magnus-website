@@ -38,6 +38,11 @@ const collaborators: CollaboratorLogo[] = [
     logoUrl: "/colab/DOKK1_BLACK.svg",
     height: 24,
   },
+  {
+    name: "Coding Pirates",
+    logoUrl: "/colab/coding-pirates.svg",
+    height: 24,
+  },
 ];
 
 export default function CollaboratorsScroll() {
